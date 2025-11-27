@@ -24,7 +24,7 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    await client.connect();
+    // await client.connect();
     const db = client.db("techDB");
 
     console.log("Connected to DB:", db.databaseName);
@@ -48,8 +48,8 @@ async function run() {
     app.use("/event-registrations", registrationRoutes);
 
     // Ping test
-    await client.db("admin").command({ ping: 1 });
-    console.log("MongoDB connection OK ✔");
+    // await client.db("admin").command({ ping: 1 });
+    // console.log("MongoDB connection OK ✔");
   } finally {
     // Keep server running
   }
