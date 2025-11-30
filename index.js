@@ -32,19 +32,19 @@ async function run() {
     // Collections
     const techCollection = db.collection("techs");
     const registrationCollection = db.collection("eventRegistrations");
-    const usersCollection = db.collection("users");
+    // const usersCollection = db.collection("users");
     const eventsCollection = db.collection("events");
 
     // Import Routes
     const eventsRoutes = require("./routes/events.routes")(eventsCollection);
     const techRoutes = require("./routes/tech.routes")(techCollection);
-    const userRoutes = require("./routes/users.routes")(usersCollection);
+    // const userRoutes = require("./routes/users.routes")(usersCollection);
     const registrationRoutes = require("./routes/registrations.routes")(registrationCollection, eventsCollection);
 
     // Mount Routes
     app.use("/events", eventsRoutes);
     app.use("/techs", techRoutes);
-    app.use("/users", userRoutes);
+    // app.use("/users", userRoutes);
     app.use("/event-registrations", registrationRoutes);
 
     // Ping test
