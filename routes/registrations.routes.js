@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = function (registrationCollection, eventsCollection) {
+
   // ⭐ Save registration safely
   router.post("/", async (req, res) => {
     const registration = req.body;
@@ -23,7 +24,7 @@ module.exports = function (registrationCollection, eventsCollection) {
       // 2️⃣ Insert new registration
       const result = await registrationCollection.insertOne(registration);
 
-      // 3️⃣ Increase event count ONLY ONCE
+      // 3️⃣ Increase event count
       await eventsCollection.updateOne(
         { id: Number(registration.eventId) },
         { $inc: { registeredCount: 1 } }
@@ -37,7 +38,20 @@ module.exports = function (registrationCollection, eventsCollection) {
     }
   });
 
-  // Get all registrations
+  // ⭐ GET registrations for a specific user
+  router.get("/:email", async (req, res) => {
+    const email = req.params.email;
+
+    try {
+      const saved = await registrationCollection.find({ email }).toArray();
+      res.send(saved);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send({ message: "Failed to load saved events" });
+    }
+  });
+
+  // ⭐ GET all registrations (admin)
   router.get("/", async (req, res) => {
     const registrations = await registrationCollection.find().toArray();
     res.send(registrations);
