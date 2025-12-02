@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { ObjectId } = require("mongodb"); // Needed to delete by _id
 
 module.exports = function (registrationCollection, eventsCollection) {
 
@@ -35,6 +36,39 @@ module.exports = function (registrationCollection, eventsCollection) {
     } catch (err) {
       console.error("❌ Registration route error:", err);
       res.status(500).send({ message: "Failed to register user" });
+    }
+  });
+
+  // ⭐ Cancel/Delete registration by ID (Step 2 → decrease registeredCount)
+  router.delete("/:id", async (req, res) => {
+    const id = req.params.id;
+
+    try {
+      // 1️⃣ Find the registration first
+      const registration = await registrationCollection.findOne({
+        _id: new ObjectId(id),
+      });
+
+      if (!registration) {
+        return res.status(404).send({ message: "Registration not found" });
+      }
+
+      // 2️⃣ Delete registration
+      const result = await registrationCollection.deleteOne({
+        _id: new ObjectId(id),
+      });
+
+      // 3️⃣ Decrease event registeredCount
+      await eventsCollection.updateOne(
+        { id: Number(registration.eventId) },
+        { $inc: { registeredCount: -1 } }
+      );
+
+      return res.send({ success: true });
+
+    } catch (err) {
+      console.error("❌ Delete registration error:", err);
+      res.status(500).send({ message: "Failed to cancel registration" });
     }
   });
 
