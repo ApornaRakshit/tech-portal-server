@@ -3,7 +3,7 @@ const router = express.Router();
 
 module.exports = function (usersCollection) {
 
-  // ⭐ Auto-create user in MongoDB if not exists
+  //  Auto-create user in MongoDB if not exists
   router.post("/", async (req, res) => {
     const user = req.body;
 
@@ -26,7 +26,7 @@ module.exports = function (usersCollection) {
     }
   });
 
-  // ⭐ Get single user by email
+  // Get single user by email
   router.get("/:email", async (req, res) => {
     try {
       const email = req.params.email;

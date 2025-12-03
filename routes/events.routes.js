@@ -3,7 +3,7 @@ const router = express.Router();
 
 module.exports = function (eventsCollection) {
   
-  // 1️⃣ GET all events
+  //  GET all events
   router.get("/", async (req, res) => {
     try {
       const events = await eventsCollection.find().toArray();
@@ -14,7 +14,7 @@ module.exports = function (eventsCollection) {
     }
   });
 
-  // 2️⃣ GET single event by ID  (optional but useful)
+  //  GET single event by ID  (optional but useful)
   router.get("/:id", async (req, res) => {
     const id = Number(req.params.id);
 

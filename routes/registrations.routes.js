@@ -4,7 +4,7 @@ const { ObjectId } = require("mongodb"); // Needed to delete by _id
 
 module.exports = function (registrationCollection, eventsCollection) {
 
-  // ⭐ Save registration safely
+  //  Save registration safely
   router.post("/", async (req, res) => {
     const registration = req.body;
 
@@ -22,10 +22,10 @@ module.exports = function (registrationCollection, eventsCollection) {
         });
       }
 
-      // 2️⃣ Insert new registration
+      //  Insert new registration
       const result = await registrationCollection.insertOne(registration);
 
-      // 3️⃣ Increase event count
+      //  Increase event count
       await eventsCollection.updateOne(
         { id: Number(registration.eventId) },
         { $inc: { registeredCount: 1 } }
@@ -39,7 +39,7 @@ module.exports = function (registrationCollection, eventsCollection) {
     }
   });
 
-  // ⭐ Cancel/Delete registration by ID (Step 2 → decrease registeredCount)
+  //  Cancel/Delete registration by ID (Step 2 → decrease registeredCount)
   router.delete("/:id", async (req, res) => {
     const id = req.params.id;
 
@@ -53,12 +53,12 @@ module.exports = function (registrationCollection, eventsCollection) {
         return res.status(404).send({ message: "Registration not found" });
       }
 
-      // 2️⃣ Delete registration
+      //  Delete registration
       const result = await registrationCollection.deleteOne({
         _id: new ObjectId(id),
       });
 
-      // 3️⃣ Decrease event registeredCount
+      //  Decrease event registeredCount
       await eventsCollection.updateOne(
         { id: Number(registration.eventId) },
         { $inc: { registeredCount: -1 } }
@@ -72,7 +72,7 @@ module.exports = function (registrationCollection, eventsCollection) {
     }
   });
 
-  // ⭐ GET registrations for a specific user
+  //  GET registrations for a specific user
   router.get("/:email", async (req, res) => {
     const email = req.params.email;
 
@@ -85,7 +85,7 @@ module.exports = function (registrationCollection, eventsCollection) {
     }
   });
 
-  // ⭐ GET all registrations (admin)
+  //  GET all registrations (admin)
   router.get("/", async (req, res) => {
     const registrations = await registrationCollection.find().toArray();
     res.send(registrations);

@@ -31,21 +31,21 @@ async function run() {
     const techCollection = db.collection("techs");
     const eventsCollection = db.collection("events");
     const registrationCollection = db.collection("eventRegistrations");
-    const usersCollection = db.collection("users"); // ⭐ FIXED
+    const usersCollection = db.collection("users"); 
     const trendsCollection = db.collection("trends");
 
     // Routes
     const eventsRoutes = require("./routes/events.routes")(eventsCollection);
     const techRoutes = require("./routes/tech.routes")(techCollection);
     const registrationRoutes = require("./routes/registrations.routes")(registrationCollection, eventsCollection);
-    const userRoutes = require("./routes/users.routes")(usersCollection); // ⭐ FIXED
+    const userRoutes = require("./routes/users.routes")(usersCollection); 
     const trendsRoutes = require("./routes/trends.routes")(trendsCollection);
 
     // Mount
     app.use("/events", eventsRoutes);
     app.use("/techs", techRoutes);
     app.use("/event-registrations", registrationRoutes);
-    app.use("/users", userRoutes); // ⭐ FIXED
+    app.use("/users", userRoutes); 
     app.use("/trends", trendsRoutes);
 
   } finally { }
