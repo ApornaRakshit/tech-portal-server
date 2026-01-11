@@ -5,7 +5,7 @@ This repository contains the complete backend of **Tech Portal**, a technology l
 
 The backend handles authentication, content management, learning pathways, and secure API services.
 
-🔗 Live API: (Add your deployed API URL here)  
+🔗 Live API: https://tech-portal-30529.web.app/  
 🔗 Server Repository: https://github.com/ApornaRakshit/tech-portal-server  
 🔗 Client Repository: https://github.com/ApornaRakshit/tech-portal-client  
 
