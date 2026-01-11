@@ -1,4 +1,4 @@
-# 🚀 Tech Portal — Server Side (Backend)
+# 🚀 Technology Evolution Portal — Server Side (Backend)
 
 A scalable and secure RESTful backend built with **Node.js, Express.js, and MongoDB**.  
 This repository contains the complete backend of **Tech Portal**, a technology learning and career guidance platform for students and IT professionals.
@@ -130,30 +130,35 @@ Server will run on:
 http://localhost:5000
 ```
 
-🔌 API Overview
-Method	Endpoint	Description
-GET	/events	Get all events
-POST	/registrations	Register for event
-GET	/tech	Get all tech articles
-GET	/trends	Get trending technologies
-GET	/users	Get users
+## 🔌 API Overview
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET    | /events | Get all events |
+| POST   | /registrations | Register for event |
+| GET    | /tech | Get all tech articles |
+| GET    | /trends | Get trending technologies |
+| GET    | /users | Get users |
+
 ---
 
 🌐 Deployment
 
 Backend deployed using Vercel
----
 
 🔮 Future Enhancements
 
-Analytics system
+- Analytics system
 
-AI-based content recommendation
+- AI-based content recommendation
 
+---
 
 📜 License
 
 This project is developed for educational and learning purposes.
+
+---
 
 📬 Contact
 
@@ -161,6 +166,8 @@ Developer: Aporna Rakshit
 
 Computer Science & Engineering Student
 Full Stack Developer (MERN)
+
+---
 
 🔗 Links
 
